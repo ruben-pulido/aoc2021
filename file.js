@@ -61,3 +61,12 @@ module.exports.bingo = async (path) => {
     bingoNumbers: await this.bingoNumbers(path),
   };
 };
+
+module.exports.lines = async (path) => {
+  return (await this.file(path))
+    .split("\n")
+    .filter((v) => v !== "")
+    .map((v) =>
+      v.split(" -> ").map((v) => v.split(",").map((v) => parseInt(v)))
+    );
+};
